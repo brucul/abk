@@ -1,0 +1,16 @@
+@media print {
+
+    body,
+    html {
+        margin-top: 0%;
+        display: block;
+        height: 100%;
+    }
+
+    #wrapper {
+        width: 100%;
+    }
+
+
+
+}
