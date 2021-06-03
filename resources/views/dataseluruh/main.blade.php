@@ -43,11 +43,14 @@
                                             <a href="{{ route('pendaftaran.index') }}" class="btn btn-info">Daftar
                                                 Baru</a>
                                             <ul class="panel-controls">
-                                                <li><a href="#" class="panel-collapse"><span
-                                                            class="fa fa-angle-down"></span></a></li>
-                                                <li><a href="#" class="panel-refresh"><span
-                                                            class="fa fa-refresh"></span></a></li>
-                                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a>
+                                                <li>
+                                                    <a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="panel-remove"><span class="fa fa-times"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -62,6 +65,7 @@
                                                         <th>Nomor HP</th>
                                                         <th>Email</th>
                                                         <th>Aksi</th>
+                                                        <th>Order</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -73,24 +77,27 @@
 
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td><a
-                                                                    href={{ route('pendaftaran.show', $pendaftar->id) }}>{{ $pendaftar->nama_lengkap }}</a>
-                                                            </td>
+                                                            <td>{{ $pendaftar->nama_lengkap }}</td>
                                                             <td>{{ $pendaftar->kebangsaan }}</td>
                                                             <td>{{ $pendaftar->alamat }}</td>
                                                             <td>{{ $pendaftar->no_hp }}</td>
                                                             <td>{{ $pendaftar->email }}</td>
                                                             <td>
                                                                 {{--  Edit  --}}
-                                                                <a href="{{ route('seluruhkapal.edit', $pendaftar->id) }}" class="btn btn-success"><i class="fa fa-trash"></i> Edit</a>
-                                                                <button type="button" data-id="{{ $pendaftar->id }}" data-name="{{ $pendaftar->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser"><i class="fa fa-trash"></i> Hapus</button>
-                                                                <div class="">
-
-                                                                    <input
-                                                                        type="checkbox" name="dipilih[]"
-                                                                        value="{{ $pendaftar->id }}"
-                                                                        style="text-align: center">
+                                                                <div class="btn-group">
+                                                                    <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="fa fa-edit"></i> Edit <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="{{ route('seluruhkapal.edit', $pendaftar->id) }}">Edit Biodata</a></li>
+                                                                        <li><a href="{{ route('keluarga.show', $pendaftar->id) }}">Edit Data Keluarga</a></li>
+                                                                        <li><a href="{{ route('pengalaman.show', $pendaftar->id) }}">Edit Data Pengalaman</a></li>
+                                                                        <li><a href="{{ route('dokumen.edit', $pendaftar->id) }}">Edit Data Dokumen</a></li>
+                                                                    </ul>
                                                                 </div>
+                                                                <button type="button" data-id="{{ $pendaftar->id }}" data-name="{{ $pendaftar->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteBiodata"><i class="fa fa-times"></i> Hapus</button>
+                                                                <a href="{{ route('print-biodata', $pendaftar->id) }}" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
+                                                            </td>
+                                                            <td>
+                                                                <input type="checkbox" name="dipilih[]" value="{{ $pendaftar->id }}" style="text-align: center"/>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -128,10 +135,11 @@
                                                         <th>NO</th>
                                                         <th>Nama Lengkap</th>
                                                         <th>Alamat</th>
-                                                        <th>Nomor Hp</th>
+                                                        <th>Pengalaman</th>
                                                         <th>Email</th>
                                                         <th>Alamat</th>
                                                         <th>Aksi</th>
+                                                        <th>Order</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -142,19 +150,32 @@
 
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td><a
-                                                                    href="{{ route('pengalaman.print', $p->id) }}">{{ $p->nama_lengkap }}</a>
-                                                            </td>
+                                                            <td>{{ $p->nama_lengkap }}</td>
                                                             <td>{{ $p->alamat }}</td>
-                                                            <td>{{ $p->no_hp }}</td>
+                                                            <td>
+                                                                @foreach ($p->pengalaman as $peng)
+                                                                    -- {{$peng->nama_perusahaan}}<br>
+                                                                @endforeach
+                                                            </td>
                                                             <td>{{ $p->email }}</td>
                                                             <td>{{ $p->alamat }}</td>
 
                                                             <td>
-                                                                <div class="glyphicon glyphicon-eye-open"> <input
-                                                                        type="checkbox" value="{{ $p->id }}"
-                                                                        name="dipilih[]" style="text-align: center"></div>
+                                                                {{--  Edit  --}}
+                                                                <div class="btn-group">
+                                                                    <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="fa fa-edit"></i> Edit <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="{{ route('seluruhkapal.edit', $p->id) }}">Edit Biodata</a></li>
+                                                                        <li><a href="{{ route('keluarga.show', $p->id) }}">Edit Data Keluarga</a></li>
+                                                                        <li><a href="{{ route('pengalaman.show', $p->id) }}">Edit Data Pengalaman</a></li>
+                                                                        <li><a href="{{ route('dokumen.edit', $p->id) }}">Edit Data Dokumen</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <button type="button" data-id="{{ $p->id }}" data-name="{{ $p->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteBiodata"><i class="fa fa-times"></i> Hapus</button>
+                                                                <a href="" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
                                                             </td>
+                                                            <td>
+                                                                <input type="checkbox" name="dipilih[]" value="{{ $p->id }}" style="text-align: center"/>
                                                         </tr>
                                                     @endforeach
 
@@ -195,6 +216,7 @@
                                                         <th>Nomor Hp</th>
                                                         <th>Email</th>
                                                         <th>Aksi</th>
+                                                        <th>Order</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -211,10 +233,21 @@
                                                             <td>{{ $p->no_hp }}</td>
                                                             <td>{{ $p->email }}</td>
                                                             <td>
-                                                                <div class="glyphicon glyphicon-eye-open"> <input
-                                                                        type="checkbox" value="{{ $p->id }}"
-                                                                        name="dipilih[]" style="text-align: center"></div>
+                                                                {{--  Edit  --}}
+                                                                <div class="btn-group">
+                                                                    <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="fa fa-edit"></i> Edit <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="{{ route('seluruhkapal.edit', $p->id) }}">Edit Biodata</a></li>
+                                                                        <li><a href="{{ route('keluarga.show', $p->id) }}">Edit Data Keluarga</a></li>
+                                                                        <li><a href="{{ route('pengalaman.show', $p->id) }}">Edit Data Pengalaman</a></li>
+                                                                        <li><a href="{{ route('dokumen.edit', $p->id) }}">Edit Data Dokumen</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <button type="button" data-id="{{ $p->id }}" data-name="{{ $p->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteBiodata"><i class="fa fa-times"></i> Hapus</button>
+                                                                <a href="" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
                                                             </td>
+                                                            <td>
+                                                                <input type="checkbox" name="dipilih[]" value="{{ $p->id }}" style="text-align: center"/>
                                                         </tr>
                                                     @endforeach
 
@@ -234,7 +267,7 @@
                                     @csrf
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">{{ $peng }}</h3>
+                                            <h3 class="panel-title">{{ $title }}</h3>
                                             <ul class="panel-controls">
                                                 <li><a href="#" class="panel-collapse"><span
                                                             class="fa fa-angle-down"></span></a></li>
@@ -270,9 +303,7 @@
                                                             <td>{{ $pra->no_hp }}</td>
                                                             <td>{{ $pra->email }}</td>
                                                             <td>
-                                                                <div class="glyphicon glyphicon-eye-open"> <input
-                                                                        type="checkbox" value="{{ $pra->id }}"
-                                                                        name="dipilih[]" style="text-align: center"></div>
+                                                                <input type="checkbox" value="{{ $pra->id }}" name="dipilih[]" style="text-align: center"/>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -292,10 +323,13 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="col-md-2">
+                                            <a href="{{route('datakapal.create')}}" class="btn btn-success">Tambah Kapal</a>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-2 col-xs-1 control-label">Tanggal Pemberangkatan</label>
+                                        <label class="col-md-2 col-xs-1 control-label">Rencana Pemberangkatan</label>
                                         <div class="col-md-2 col-xs-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
@@ -304,7 +338,7 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer">
-                                        <button type="submit" class="btn btn-success pull-right">Tambahkan Ke Order
+                                        <button type="submit" class="btn btn-success pull-right">Proses Order
                                         </button>
                                     </div>
                                 </form>
@@ -329,7 +363,7 @@
                                                     <th>Nama Kapal</th>
                                                     <th>Jenis Kapal</th>
                                                     <th>Bendera Kapal</th>
-                                                    <th>Tanggal Pemberangkatan</th>
+                                                    <th>Rencana Pemberangkatan</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -344,10 +378,10 @@
                                                         <td>{{ $pemb->kapal->nama_kapal }}</td>
                                                         <td>{{ $pemb->kapal->jenis }}</td>
                                                         <td>{{ $pemb->kapal->bendera }}</td>
-                                                        <td>{{ $pemb->tanggal_pemberangkatan }}</td>
+                                                        <td>{{ $pemb->rencana_pemberangkatan }}</td>
                                                         <td>
-                                                            <a href="{{ route('seluruhkapal.show', $pemb->id) }}"
-                                                                class="btn btn-info"> Lihat Penumpang</a>
+                                                            <a href="{{ route('seluruhkapal.show', $pemb->id) }}" class="btn btn-info"> Lihat Penumpang</a>
+                                                            <a href="{{ route('seluruhkapal.berangkatkan', $pemb->id) }}" class="btn btn-info">Berangkatkan</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -364,19 +398,31 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript">
-        function change() {
-            var x = document.getElementById('pass').type;
 
-            if (x == 'password') {
-                document.getElementById('pass').type = 'text';
-                document.getElementById('mybutton').innerHTML = '<i class="glyphicon glyphicon-eye-close"></i>';
-            } else {
-                document.getElementById('pass').type = 'password';
-                document.getElementById('mybutton').innerHTML = '<i class="glyphicon glyphicon-eye-open"></i>';
-            }
-        }
+    {{-- Modal Delete --}}
+<div class="modal modal-default fade" id="deleteBiodata">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="deleteUser">Delete User</h3>
+            </div>
+            <div class="modal-body">
+                <h5 id="text-delete"></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger delete_user"><i class="fa fa-trash"></i> Hapus Data</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
-    </script>
+
 
 @endsection

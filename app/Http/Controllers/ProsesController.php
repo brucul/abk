@@ -40,11 +40,11 @@ class ProsesController extends Controller
             pemberangkatan::create([
                 'id_biodata' => $request->dipilih[$i],
                 'id_kapal' => $request->kapal,
-                'tanggal_pemberangkatan' => $request->date,
+                'rencana_pemberangkatan' => $request->date,
             ]);
         }
         kapal::findId($request->kapal)->update(['status' => 'berlayar']);
-        return back();
+        return back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**

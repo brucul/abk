@@ -166,9 +166,6 @@
                                                                 placeholder="masukan warna mata" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Warna Rambut</label>
                                                         <div class="col-md-9">
@@ -176,6 +173,9 @@
                                                                 placeholder="masukan warna rambut" />
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
+
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Bentuk Wajah</label>
                                                         <div class="col-md-9">
@@ -233,10 +233,59 @@
                                                                 placeholder=" masukan tinggal bersama" />
                                                         </div>
                                                     </div>
-
-
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"></label>
+                                                        <label class="col-md-9">Bahasa</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Indonesia</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="indo">
+                                                                <option>Sangat Baik</option>
+                                                                <option>Baik</option>
+                                                                <option>Cukup</option>
+                                                                <option>Pasif</option>
+                                                                <option>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Inggris</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="inggris">
+                                                                <option>Sangat Baik</option>
+                                                                <option>Baik</option>
+                                                                <option>Cukup</option>
+                                                                <option>Pasif</option>
+                                                                <option>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Spanyol</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="spanyol">
+                                                                <option>Sangat Baik</option>
+                                                                <option>Baik</option>
+                                                                <option>Cukup</option>
+                                                                <option>Pasif</option>
+                                                                <option>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Mandarin</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="mandarin">
+                                                                <option>Sangat Baik</option>
+                                                                <option>Baik</option>
+                                                                <option>Cukup</option>
+                                                                <option>Pasif</option>
+                                                                <option>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
                                             </div>
 
                                         </div>

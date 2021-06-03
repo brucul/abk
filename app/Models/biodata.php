@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\pengalaman_berlayar;
 use App\Models\pemberangkatan;
 use App\Models\informasi;
+use App\Models\berkas_dokumen;
+use App\Models\data_keluarga;
 
 class biodata extends Model
 {
@@ -33,20 +35,32 @@ class biodata extends Model
         'email',
         'tinggal_bersama',
         'status',
-        'posisi'
+        'posisi',
+        'indonesia',
+        'inggris',
+        'spanyol',
+        'mandarin',
 
     ];
 
+    public function keluarga()
+    {
+        return $this->hasMany(data_keluarga::class, 'id_biodata');
+    }
     public function pengalaman()
     {
-        return $this->hasOne(pengalaman_berlayar::class);
+        return $this->hasMany(pengalaman_berlayar::class, 'id_biodata');
     }
     public function pemberangkatan()
     {
-        return $this->hasOne(pemberangkatan::class);
+        return $this->hasOne(pemberangkatan::class, 'id_biodata');
     }
     public function informasi()
     {
         return $this->hasOne(informasi::class, 'id_biodata');
+    }
+    public function dokumen()
+    {
+        return $this->hasOne(berkas_dokumen::class, 'id_biodata');
     }
 }

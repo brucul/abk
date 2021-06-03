@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('template/Icon2.ico') }}" type="image/x-icon" />
     <!-- END META SECTION -->
@@ -63,6 +64,12 @@
 
             <!-- PAGE CONTENT WRAPPER -->
             <div class="page-content-wrap">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                    <strong>{{ $message }}</strong>
+                </div>
+                @endif
                 @yield('content')
             </div>
             <!-- END PAGE CONTENT WRAPPER -->

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\biodata;
+use App\Models\kapal;
+use App\Models\pemberangkatan;
+use App\Models\pengalaman_berlayar;
 
 class AbkController extends Controller
 {
@@ -13,7 +17,15 @@ class AbkController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Data ABK";
+        $awak = "Data Awak Kapal";
+        $sub_title = "List Data ABK";
+
+        $abk_kapal = pemberangkatan::where('tanggal_pemberangkatan', '!=', null)->get();
+        // $abk_kapal = biodata::whereIn('id', $id_abk_kapal)->get();
+        $abk_pulang = biodata::where('status', '')->get();
+
+        return view('abk-kapal.main', compact('awak','title', 'sub_title', 'abk_kapal', 'abk_pulang'));
     }
 
     /**

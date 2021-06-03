@@ -21,7 +21,7 @@
                                             <h3 class="panel-title">Nama Kapal:{{ $nama_kapal }}</h3><br></br>
                                             <h3 class="panel-title">Jenis Kapal:{{ $jenis_kapal }}</h3><br></br>
                                             <h3 class="panel-title">Bendera:{{ $bendera }}</h3><br></br>
-                                            <h3 class="panel-title">Tanggal Pemberangkatan:{{ $tanggal_pemberangkatan }}
+                                            <h3 class="panel-title">Tanggal Pemberangkatan:{{ $rencana_pemberangkatan }}
                                             </h3><br><br><br>
                                             <a href="{{ route('dataseluruh.print', $id) }}" class="btn btn-info">Print</a>
                                             <a href="{{ route('dataseluruh.download', $id) }}"

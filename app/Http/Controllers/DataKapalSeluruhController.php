@@ -37,7 +37,7 @@ class DataKapalSeluruhController extends Controller
         $praproses = biodata::where('status', 'praproses')->get();
         // $kapal = kapal::where('status', 'menyandar')->get();
         $kapal = kapal::all();
-        $pemberangkatan = pemberangkatan::groupBy('id_kapal')->get();
+        $pemberangkatan = pemberangkatan::where('tanggal_pemberangkatan', null)->groupBy('id_kapal')->get();
         return view('dataseluruh.main', compact('title', 'sub_title', 'peng', 'nonpeng', 'semua_data_pendaftar', 'pengalaman', 'non', 'praproses', 'kapal', 'pemberangkatan'));
     }
 
@@ -69,7 +69,7 @@ class DataKapalSeluruhController extends Controller
                 pemberangkatan::create([
                     'id_biodata' => $request->dipilih[$i],
                     'id_kapal' => $request->kapal,
-                    'tanggal_pemberangkatan' => $request->tanggal,
+                    'rencana_pemberangkatan' => $request->tanggal,
                 ]);
                 biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
             }
@@ -81,7 +81,7 @@ class DataKapalSeluruhController extends Controller
         }
 
 
-        return back();
+        return back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
@@ -90,27 +90,47 @@ class DataKapalSeluruhController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function printberangkat($id)
+    // {
+    //     $pemberangkatan = pemberangkatan::findOrFail($id);
+    //     $title = "PT. MAJU JAYA BERSAMA (MJB)";
+    //     $namaper = "INTERNATIONAL RECRUITMEN MANNING AND SERVICE AGENCY";
+    //     $alamatperu = "Jln Raya Karanganyar - Desa Karanganyar - Kedungbanteng - Tegal - Jawa Tengah";
+    //     $telep = "Tel : +62283 6195 890, +62952 2502 6561 | Email : ptmjbtegal@gmail.com";
+    //     $sub_title = "DATA SELURUH ABK BERLAYAR";
+    //     $peng = "Pengalaman";
+    //     $nonpeng = "Non Pengalaman";
+    //     $nama_kapal = $pemberangkatan->kapal->nama_kapal;
+    //     $jenis_kapal = $pemberangkatan->kapal->jenis;
+    //     $bendera = $pemberangkatan->kapal->bendera;
+    //     $tanggal_pemberangkatan = $pemberangkatan->tanggal_pemberangkatan;
+    //     $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
+    //         ->where('tanggal_pemberangkatan', $pemberangkatan->tanggal_pemberangkatan)
+    //         ->pluck('id_biodata');
+    //     $bio = biodata::whereIn('id', $id_penumpang)->first();
+    //     $penumpang = biodata::whereIn('id', $id_penumpang)->get();
+    //     $kapal = kapal::whereIn('id', $id_penumpang)->get();
+    //     return view('dataseluruh.datadokumen.crewlist', compact('id', 'telep', 'nonpeng', 'bio', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'kapal', 'tanggal_pemberangkatan', 'namaper', 'alamatperu'));
+    //     return view('dataseluruh.print_berangkat', compact('id', 'telep', 'nonpeng', 'bio', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'kapal', 'tanggal_pemberangkatan', 'namaper', 'alamatperu'));
+    // }
+
     public function printberangkat($id)
     {
         $pemberangkatan = pemberangkatan::findOrFail($id);
-        $title = "PT. MAJU JAYA BERSAMA (MJB)";
-        $namaper = "INTERNATIONAL RECRUITMEN MANNING AND SERVICE AGENCY";
-        $alamatperu = "Jln Raya Karanganyar - Desa Karanganyar - Kedungbanteng - Tegal - Jawa Tengah";
-        $telep = "Tel : +62283 6195 890, +62952 2502 6561 | Email : ptmjbtegal@gmail.com";
-        $sub_title = "DATA SELURUH ABK BERLAYAR";
+        $title = "Data Pemberangkatan";
+        $sub_title = "List Data Seluruh ABK Berlayar";
         $peng = "Pengalaman";
         $nonpeng = "Non Pengalaman";
         $nama_kapal = $pemberangkatan->kapal->nama_kapal;
         $jenis_kapal = $pemberangkatan->kapal->jenis;
         $bendera = $pemberangkatan->kapal->bendera;
-        $tanggal_pemberangkatan = $pemberangkatan->tanggal_pemberangkatan;
+        $rencana_pemberangkatan = $pemberangkatan->rencana_pemberangkatan;
         $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
-            ->where('tanggal_pemberangkatan', $pemberangkatan->tanggal_pemberangkatan)
+            ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
             ->pluck('id_biodata');
-        $bio = biodata::whereIn('id', $id_penumpang)->first();
+        
         $penumpang = biodata::whereIn('id', $id_penumpang)->get();
-        $kapal = kapal::whereIn('id', $id_penumpang)->get();
-        return view('dataseluruh.print_berangkat', compact('id', 'telep', 'nonpeng', 'bio', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'kapal', 'tanggal_pemberangkatan', 'namaper', 'alamatperu'));
+        return view('dataseluruh.datadokumen.crewlist', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'rencana_pemberangkatan'));
     }
 
     //DOKUMENSSSTTT
@@ -143,29 +163,35 @@ class DataKapalSeluruhController extends Controller
         return view('dataseluruh.datapengalaman.printpengalaman', compact('title', 'pengalaman', 'nonpeng', 'sub_title', 'telep', 'namaper', 'alamatperu', 'peng',));
     }
 
+    public function print_biodata($id)
+    {
+        $title = "PT. MAJU JAYA BERSAMA (MJB)";
+        $namaper = "INTERNATIONAL RECRUITMEN MANNING AND SERVICE AGENCY";
+        $alamatperu = "Jln Raya Karanganyar - Desa Karanganyar - Kedungbanteng - Tegal - Jawa Tengah";
+        $telep = "Tel : +62283 6195 890, +62952 2502 6561 | Email : ptmjbtegal@gmail.com";
+        $biodata = biodata::findOrFail($id);
+        // $orangtua - data_keluarga::where(['hubungan', 'like', '%ibu%'])->get();
+
+        return view('dataseluruh.print_biodata', compact('title', 'telep', 'namaper', 'alamatperu', 'biodata'));
+    }
 
     public function downloadpdf($id)
     {
-        // $biodata = biodata::all();
         $pemberangkatan = pemberangkatan::findOrFail($id);
         $title = "Data Pemberangkatan";
-        $namaper = "PT MAJU JAYA KASIH";
-        $alamatperu = "Jln. Mujaer Mundur No.6 - Kabupaten Tegal - Tegal Selatan - Kode POS : 52181";
-        $telep = "Tel : +62283 6195 890, +62952 2502 6561 | Email : ptmjbtegal@gmail.com";
-        $sub_title = "DATA SELURUH ABK BERLAYAR";
+        $sub_title = "List Data Seluruh ABK Berlayar";
         $peng = "Pengalaman";
         $nonpeng = "Non Pengalaman";
         $nama_kapal = $pemberangkatan->kapal->nama_kapal;
         $jenis_kapal = $pemberangkatan->kapal->jenis;
         $bendera = $pemberangkatan->kapal->bendera;
-        $tanggal_pemberangkatan = $pemberangkatan->tanggal_pemberangkatan;
+        $rencana_pemberangkatan = $pemberangkatan->rencana_pemberangkatan;
         $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
-            ->where('tanggal_pemberangkatan', $pemberangkatan->tanggal_pemberangkatan)
+            ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
             ->pluck('id_biodata');
-
+        
         $penumpang = biodata::whereIn('id', $id_penumpang)->get();
-        $bio = biodata::findOrFail($id);
-        $pdf = PDF::loadview('dataseluruh.print_berangkat', compact('penumpang', 'bio', 'telep', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'tanggal_pemberangkatan', 'namaper', 'alamatperu'));
+        $pdf = PDF::loadview('dataseluruh.datadokumen.crewlist', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'rencana_pemberangkatan'))->setPaper('a4', 'landscape');
         return $pdf->download('laporan-berangkat.pdf');
     }
     public function show($id)
@@ -179,17 +205,13 @@ class DataKapalSeluruhController extends Controller
         $nama_kapal = $pemberangkatan->kapal->nama_kapal;
         $jenis_kapal = $pemberangkatan->kapal->jenis;
         $bendera = $pemberangkatan->kapal->bendera;
-        $tanggal_pemberangkatan = $pemberangkatan->tanggal_pemberangkatan;
+        $rencana_pemberangkatan = $pemberangkatan->rencana_pemberangkatan;
         $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
-            ->where('tanggal_pemberangkatan', $pemberangkatan->tanggal_pemberangkatan)
+            ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
             ->pluck('id_biodata');
-        //
+        
         $penumpang = biodata::whereIn('id', $id_penumpang)->get();
-        return view('dataseluruh.list_penumpang', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'tanggal_pemberangkatan'));
-        // return $id_penumpang;
-
-
-
+        return view('dataseluruh.list_penumpang', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'rencana_pemberangkatan'));
     }
 
     public function batal(Request $request)
@@ -202,7 +224,23 @@ class DataKapalSeluruhController extends Controller
             //     biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
             // }
         }
-        return redirect()->back();
+        if (pemberangkatan::count()) {
+            return redirect()->back();
+        }else{
+            return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
+        }
+        
+    }
+
+    public function berangkatkan($id)
+    {
+        $pemberangkatan = pemberangkatan::findOrFail($id);
+        $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
+            ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
+            ->pluck('id_biodata');
+        
+        $penumpang = pemberangkatan::whereIn('id_biodata', $id_penumpang)->update(['tanggal_pemberangkatan' => date('Y-m-d')]);
+        return redirect()->back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
@@ -219,7 +257,7 @@ class DataKapalSeluruhController extends Controller
         $keluarga = data_keluarga::where('id_biodata', $id)->get();
         $pengalaman = pengalaman_berlayar::where('id_biodata', $id)->get();
 
-        return view('dataseluruh.edit_pendaftaran', compact('title', 'sub_title', 'biodata', 'keluarga', 'pengalaman'));
+        return view('dataseluruh.edit-biodata.edit_biodata', compact('title', 'sub_title', 'biodata', 'keluarga', 'pengalaman'));
     }
 
     /**
@@ -234,6 +272,7 @@ class DataKapalSeluruhController extends Controller
         //
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -242,6 +281,9 @@ class DataKapalSeluruhController extends Controller
      */
     public function destroy($id)
     {
-        //
+        biodata::destroy($id);
+        return response()->json([
+            'success' => 'Berhasil Menghapus Data'
+        ]);
     }
 }

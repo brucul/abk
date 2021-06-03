@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\biodata;
+use App\Models\kapal;
 
 class pemberangkatan extends Model
 {
@@ -11,6 +13,7 @@ class pemberangkatan extends Model
     protected $fillable = [
         'id_biodata',
         'id_kapal',
+        'rencana_pemberangkatan',
         'tanggal_pemberangkatan',
 
     ];

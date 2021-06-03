@@ -25,6 +25,6 @@ class informasi extends Model
     }
     public function penyakit()
     {
-        return $this->hasMany(penyakit::class);
+        return $this->hasMany(penyakit::class, 'id_quest');
     }
 }

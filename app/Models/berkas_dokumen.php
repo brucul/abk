@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\biodata;
 
 class berkas_dokumen extends Model
 {
@@ -33,7 +34,7 @@ class berkas_dokumen extends Model
         'no_kk',
         'exp_kk',
         'no_skck',
-        'sxp_skck',
+        'exp_skck',
         'no_bst',
         'exp_bst',
         'no_paspor',
@@ -44,4 +45,8 @@ class berkas_dokumen extends Model
         'exp_medikal'
 
     ];
+
+    public function biodata(){
+        return $this->belongsTo(biodata::class, 'id_biodata');
+    }
 }

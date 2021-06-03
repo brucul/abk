@@ -165,9 +165,6 @@
                                                                 placeholder="masukan warna mata" value="{{ $biodata->warna_mata }}" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Warna Rambut</label>
                                                         <div class="col-md-9">
@@ -175,6 +172,9 @@
                                                                 placeholder="masukan warna rambut" value="{{ $biodata->warna_rambut }}" />
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
+
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Bentuk Wajah</label>
                                                         <div class="col-md-9">
@@ -231,8 +231,58 @@
                                                                 placeholder=" masukan tinggal bersama" value="{{ $biodata->tinggal_bersama }}" />
                                                         </div>
                                                     </div>
-
-
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"></label>
+                                                        <label class="col-md-9">Bahasa</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Indonesia</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="indo">
+                                                                <option {{ $biodata->indonesia == 'Sangat Baik' ? "selected" : "" }}>Sangat Baik</option>
+                                                                <option {{ $biodata->indonesia == 'Baik' ? "selected" : "" }}>Baik</option>
+                                                                <option {{ $biodata->indonesia == 'Cukup' ? "selected" : "" }}>Cukup</option>
+                                                                <option {{ $biodata->indonesia == 'Pasif' ? "selected" : "" }}>Pasif</option>
+                                                                <option {{ $biodata->indonesia == 'Tidak Bisa' ? "selected" : "" }}>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Inggris</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="inggris">
+                                                                <option {{ $biodata->inggris == 'Sangat Baik' ? "selected" : "" }}>Sangat Baik</option>
+                                                                <option {{ $biodata->inggris == 'Baik' ? "selected" : "" }}>Baik</option>
+                                                                <option {{ $biodata->inggris == 'Cukup' ? "selected" : "" }}>Cukup</option>
+                                                                <option {{ $biodata->inggris == 'Pasif' ? "selected" : "" }}>Pasif</option>
+                                                                <option {{ $biodata->inggris == 'Tidak Bisa' ? "selected" : "" }}>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Spanyol</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="spanyol">
+                                                                <option {{ $biodata->spanyol == 'Sangat Baik' ? "selected" : "" }}>Sangat Baik</option>
+                                                                <option {{ $biodata->spanyol == 'Baik' ? "selected" : "" }}>Baik</option>
+                                                                <option {{ $biodata->spanyol == 'Cukup' ? "selected" : "" }}>Cukup</option>
+                                                                <option {{ $biodata->spanyol == 'Pasif' ? "selected" : "" }}>Pasif</option>
+                                                                <option {{ $biodata->spanyol == 'Tidak Bisa' ? "selected" : "" }}>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Mandarin</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control select" name="mandarin">
+                                                                <option {{ $biodata->mandarin == 'Sangat Baik' ? "selected" : "" }}>Sangat Baik</option>
+                                                                <option {{ $biodata->mandarin == 'Baik' ? "selected" : "" }}>Baik</option>
+                                                                <option {{ $biodata->mandarin == 'Cukup' ? "selected" : "" }}>Cukup</option>
+                                                                <option {{ $biodata->mandarin == 'Pasif' ? "selected" : "" }}>Pasif</option>
+                                                                <option {{ $biodata->mandarin == 'Tidak Bisa' ? "selected" : "" }}>Tidak Bisa</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -260,24 +310,41 @@
                                                         $no = 1;
                                                     @endphp
                                                     @foreach ($keluarga as $k)
-
-
+                                                    <form enctype="multipart/form-data" class="form-horizontal" role="form" action="{{route('keluarga.update', $k->id)}}" method="POST">
+                                                        @method('PATCH')
+                                                        @csrf
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $k->hubungan }}</td>
-                                                            <td>{{ $k->nama_lengkap }}</td>
-                                                            <td>{{ $k->usia }}</td>
-                                                            <td>{{ $k->pendidikan }}</td>
-                                                            <td>{{ $k->pekerjaan }}</td>
-                                                            <td>{{ $k->no_hp }}</td>
-                                                            <td>{{ $k->urutan_keluarga }}</td>
                                                             <td>
+                                                                <input type="text" name="hubungan" class="form-control" value="{{ $k->hubungan }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="nama_lengkap" class="form-control" value="{{ $k->nama_lengkap }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="usia" class="form-control" value="{{ $k->usia }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="pendidikan" class="form-control" value="{{ $k->pendidikan }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="pekerjaan" class="form-control" value="{{ $k->pekerjaan }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="no_hp" class="form-control" value="{{ $k->no_hp }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="urutan_keluarga" class="form-control" value="{{ $k->urutan_keluarga }}">
+                                                            </td>
+                                                            <td>
+                                                                <button type="submit" class="btn btn-primary">Update</button>
                                                                 {{--  Edit  
                                                                 <a href="{{ route('seluruhkapal.edit', $k->id) }}" class="btn btn-success"><i class="fa fa-trash"></i> Edit</a>
                                                                 <button type="button" data-id="{{ $k->id }}" data-name="{{ $k->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser"><i class="fa fa-trash"></i> Hapus</button>
                                                                 --}}
                                                             </td>
                                                         </tr>
+                                                    </form>
                                                     @endforeach
                                                 </tbody>
                                             </table>

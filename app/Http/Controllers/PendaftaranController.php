@@ -45,6 +45,10 @@ class PendaftaranController extends Controller
             'tinggal_bersama' => $request->tinggal_bersama,
             'status' => $status,
             'posisi' => $request->posisi,
+            'indonesia' => $request->indo,
+            'inggris' => $request->inggris,
+            'spanyol' => $request->spanyol,
+            'mandarin' => $request->mandarin,
         ];
         return $biodata;
     }
@@ -104,7 +108,7 @@ class PendaftaranController extends Controller
             'no_kk' => $request->no_kk,
             'exp_kk' => $request->exp_kk,
             'no_skck' => $request->no_skck,
-            'sxp_skck' => $request->sxp_skck,
+            'exp_skck' => $request->sxp_skck,
             'no_bst' => $request->no_bst,
             'exp_bst' => $request->exp_bst,
             'no_paspor' => $request->no_paspor,
@@ -190,14 +194,18 @@ class PendaftaranController extends Controller
             ]);
         }
 
+        $filePath = 'public/files/' . $biodata->id . '/dokumen/';
+        if (!Storage::exists($filePath)) {
+            Storage::makeDirectory($filePath, 0775, true, true);
+        }
+
         //settingktp
         if ($request->file('ktp') == null) {
             $ktp = $kosongpdf;
         } else {
             $file = $request->file('ktp');
             $ktp = "ktp-" . $request->no_ktp . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/ktp';
-            $file->move($filePath, $ktp);
+            $file->storeAs($filePath, $ktp);
         }
         //settingakte
         if ($request->file('akte') == null) {
@@ -205,8 +213,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('akte');
             $akte = "akte-" . $request->no_akte . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/akte';
-            $file->move($filePath, $akte);
+            $file->storeAs($filePath, $akte);
         }
         //settingijazah
         if ($request->file('ijazah') == null) {
@@ -214,8 +221,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('ijazah');
             $ijazah = "ijazah-" . $request->no_ijasah . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/ijazah';
-            $file->move($filePath, $ijazah);
+            $file->storeAs($filePath, $ijazah);
         }
         //settingbuku_nikah
         if ($request->file('buku_nikah') == null) {
@@ -223,8 +229,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('buku_nikah');
             $buku_nikah = "buku_nikah-" . $request->no_bnikah . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/buku_nikah';
-            $file->move($filePath, $buku_nikah);
+            $file->storeAs($filePath, $buku_nikah);
         }
         //settingkartu_keluarga
         if ($request->file('kartu_keluarga') == null) {
@@ -232,8 +237,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('kartu_keluarga');
             $kartu_keluarga = "kartu_keluarga-" . $request->no_kk . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/kartu_keluarga';
-            $file->move($filePath, $kartu_keluarga);
+            $file->storeAs($filePath, $kartu_keluarga);
         }
         //settingskck
         if ($request->file('skck') == null) {
@@ -241,8 +245,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('skck');
             $skck = "skck-" . $request->no_skck . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/skck';
-            $file->move($filePath, $skck);
+            $file->storeAs($filePath, $skck);
         }
         //settingbst
         if ($request->file('bst') == null) {
@@ -250,8 +253,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('bst');
             $bst = "bst-" . $request->no_bst . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/bst';
-            $file->move($filePath, $bst);
+            $file->storeAs($filePath, $bst);
         }
         //settingpaspor
         if ($request->file('paspor') == null) {
@@ -259,8 +261,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('paspor');
             $paspor = "paspor-" . $request->no_paspor . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/paspor';
-            $file->move($filePath, $paspor);
+            $file->storeAs($filePath, $paspor);
         }
         //settingbuku_pelaut
         if ($request->file('buku_pelaut') == null) {
@@ -268,8 +269,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('buku_pelaut');
             $buku_pelaut = "buku_pelaut-" . $request->no_pelaut . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/buku_pelaut';
-            $file->move($filePath, $buku_pelaut);
+            $file->storeAs($filePath, $buku_pelaut);
         }
         //settingpas_foto_putih
         if ($request->file('pas_foto_putih') == null) {
@@ -277,8 +277,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('pas_foto_putih');
             $pas_foto_putih = "pas_foto_putih-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/pas_foto_putih';
-            $file->move($filePath, $pas_foto_putih);
+            $file->storeAs($filePath, $pas_foto_putih);
         }
         //settingmcu
         if ($request->file('pas_foto_biru') == null) {
@@ -286,8 +285,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('pas_foto_biru');
             $pas_foto_biru = "pas_foto_biru-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/pas_foto_biru';
-            $file->move($filePath, $pas_foto_biru);
+            $file->storeAs($filePath, $pas_foto_biru);
         }
         //settingmcu
         if ($request->file('mcu') == null) {
@@ -295,8 +293,7 @@ class PendaftaranController extends Controller
         } else {
             $file = $request->file('mcu');
             $mcu = "mcu-" . $request->no_midikal . "-" . time() . "." . $file->extension();
-            $filePath = public_path() . '/files' . '/' . $biodata->nama_lengkap . '/uploads/mcu';
-            $file->move($filePath, $mcu);
+            $file->storeAs($filePath, $mcu);
         }
 
         berkas_dokumen::create($this->dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu));
@@ -349,7 +346,7 @@ class PendaftaranController extends Controller
             }
         }
         
-        return redirect()->route('seluruhkapal.index');
+        return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
@@ -393,7 +390,18 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $biodata = biodata::findOrFail($id);
+        $status = $biodata->status;
+        $biodata->update($this->biodata($request, $status));
+        return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
+    }
+
+    public function update_pengalaman(Request $request, $id)
+    {
+        $pengalaman = pengalaman_berlayar::findOrFail($id);
+        $id_biodata = $pengalaman->id_biodata;
+        $pengalaman->update($this->pengalaman_berlayar($request, $id_biodata));
+        return redirect()->back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**

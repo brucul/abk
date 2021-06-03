@@ -264,18 +264,18 @@
         $("#addSakit").click(function() {
             i++;
             $('#penyakit').append(
-                '<br><div class="row" id="penyakit' + i + '">' +
+                '<div class="form-group row" id="penyakit' + i + '">' +
                 '<div class="col-md-2">' +
-                '<input type="text" class="form-control" name="tahun[]" placeholder="Tahun/Bulan" />' +
+                '<input type="text" class="form-control" name="add_tahun[]" placeholder="Tahun/Bulan" />' +
                 '</div>' +
                 '<div class="col-md-3">' +
-                '<input type="text" class="form-control" name="penyakit[]" placeholder="Jenis Penyakit/Tindakan" />' +
+                '<input type="text" class="form-control" name="add_penyakit[]" placeholder="Jenis Penyakit/Tindakan" />' +
                 '</div>' +
                 '<div class="col-md-3">' +
-                '<input type="text" class="form-control" name="status_akhir[]" placeholder="Status Akhir" />' +
+                '<input type="text" class="form-control" name="add_status_akhir[]" placeholder="Status Akhir" />' +
                 '</div>' +
                 '<div class="col-md-3">' +
-                '<input type="text" class="form-control" name="keterangan[]" placeholder="Keterangan" />' +
+                '<input type="text" class="form-control" name="add_keterangan[]" placeholder="Keterangan" />' +
                 '</div>' +
                 '<div class="col-md-1">' +
                 '<button class="btn btn-primary btn_remove_penyakit" id="' + i + '"><center>' +
@@ -291,6 +291,122 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#deleteBiodata').on("show.bs.modal", (e) => {
+
+            $('#text-delete').text("Yakin ingin Menghapus "+$(e.relatedTarget).data('name')+" ?")
+
+            $('.delete_user').click( () => {
+                $.ajax({
+                    url : "/seluruhkapal/"+$(e.relatedTarget).data('id'),
+                    method : "POST",
+                    cache : false,
+                    data : {
+                        _method: "DELETE",
+                    },
+                    success : (res) => {
+                        location.reload()
+                    }
+                })
+            })
+        })
+
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#deleteKeluarga').on("show.bs.modal", (e) => {
+
+            $('#text-delete').text("Yakin ingin Menghapus "+$(e.relatedTarget).data('name')+" ?")
+
+            $('.delete_keluarga').click( () => {
+                $.ajax({
+                    url : "/keluarga/"+$(e.relatedTarget).data('id'),
+                    method : "POST",
+                    cache : false,
+                    data : {
+                        _method: "DELETE",
+                    },
+                    success : (res) => {
+                        location.reload()
+                    }
+                })
+            })
+        })
+
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#deletePengalaman').on("show.bs.modal", (e) => {
+
+            $('#text-delete').text("Yakin ingin Menghapus Pengalaman di "+$(e.relatedTarget).data('name')+" ?")
+
+            $('.delete_pengalaman').click( () => {
+                $.ajax({
+                    url : "/pengalaman/"+$(e.relatedTarget).data('id'),
+                    method : "POST",
+                    cache : false,
+                    data : {
+                        _method: "DELETE",
+                    },
+                    success : (res) => {
+                        location.reload()
+                    }
+                })
+            })
+        })
+
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#deletePenyakit').on("show.bs.modal", (e) => {
+
+            $('#text-delete-penyakit').text("Yakin ingin Menghapus Penyakit "+$(e.relatedTarget).data('name')+" ?")
+
+            $('.delete_penyakit').click( () => {
+                $.ajax({
+                    url : "/informasi/"+$(e.relatedTarget).data('id'),
+                    method : "POST",
+                    cache : false,
+                    data : {
+                        _method: "DELETE",
+                    },
+                    success : (res) => {
+                        location.reload()
+                    }
+                })
+            })
+        })
+
+    })
+</script>
 
 <script type="text/javascript" src="{{ asset('template/js/settings.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins.js') }}"></script>

@@ -25,7 +25,8 @@
     <li class="xn-title">Data Input</li>
     <li><a href="{{ route('seluruhkapal.index') }}"><span class="fa fa-file-text"></span> Pendaftaran Calon ABK</a>
     </li>
-    <li><a href="{{ route('datakapal.index') }}"><span class="fa fa-ship"></span> Data ABK diatas Kapal</a></li>
+    <li><a href="{{ route('abk-kapal.index') }}"><span class="fa fa-ship"></span> Data ABK diatas Kapal</a></li>
+    <li><a href="{{ route('datakapal.index') }}"><span class="fa fa-ship"></span> Data Kapal</a></li>
     <li><a href="{{ route('seluruhabk.index') }}"><span class="fa fa-users"></span> Data Seluruh ABK</a></li>
     {{-- <li class="xn-title">Components</li>
     <li><a href="#"><span class="fa fa-file"></span> Data Seluruh Kapal</a></li> --}}

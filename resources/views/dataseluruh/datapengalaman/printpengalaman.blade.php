@@ -494,7 +494,7 @@
                 </div>
             </tr>
         </table>
-        <div class="garis_tepi2" style="width: 739px; height: 160px; text-align: justify;">
+        <div class="garis_tepi2" style="width: 739px; height: 160px; text-align: justify; page-break-after: always;">
             <table><br>
                 <label class="col-xs-12 ">Semua Pernyataan Dalam Aplikasi Lamaran Ini Adalah Benar dan Sesuai
                     Keadaan Sebenarnya, Saya Mengerti Jika Ada Pernyataan Yang Terbukti Tidak Benar Maka Saya

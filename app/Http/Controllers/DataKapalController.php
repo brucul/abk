@@ -31,13 +31,8 @@ class DataKapalController extends Controller
         $sub_title = "List Data Kapal";
         $awak = "Data Awak Kapal";
 
-        $sub_title = "List Data Seluruh Kapal";
-        $praproses = biodata::where('status', 'praproses')->get();
-        // $kapal=kapal::where('status','menyandar')->get();
         $kapal = kapal::all();
-        $pemberangkatan = pemberangkatan::groupBy('id_kapal')->get();
-        $seluruhawak = pemberangkatan::all();
-        return view('datakapal.main', compact('seluruhawak','awak','title', 'sub_title', 'kapal', 'pemberangkatan'));
+        return view('datakapal.main', compact('title', 'sub_title', 'kapal'));
 
     }
 
@@ -66,7 +61,7 @@ class DataKapalController extends Controller
         //
         $status = 'menyandar';
         kapal::create($this->kapal($request, $status));
-        return redirect()->route('datakapal.index');
+        return redirect()->route('datakapal.index')->with('success', 'Berhasil Menyimpan Data');
     }
 
     public function pulang(Request $request)
@@ -78,7 +73,7 @@ class DataKapalController extends Controller
                 biodata::where('id',$pemberangkatan->id_biodata)->update(['status' => '']);
             }
         }
-        return back();
+        return back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
@@ -100,7 +95,11 @@ class DataKapalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kapal = kapal::findOrFail($id);
+        $title = " Edit Data Kapal";
+        $sub_title = "Edit Data Kapal";
+        $awak = "Data Kapal";
+        return view('datakapal.edit', compact('title','sub_title','awak', 'kapal'));
     }
 
     /**
@@ -112,7 +111,9 @@ class DataKapalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status = kapal::where('id', $id)->pluck('status');
+        kapal::findOrFail($id)->update($this->kapal($request, $status));
+        return redirect()->route('datakapal.index')->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
