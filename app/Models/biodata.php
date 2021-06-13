@@ -35,6 +35,7 @@ class biodata extends Model
         'email',
         'tinggal_bersama',
         'status',
+        'pulang',
         'posisi',
         'indonesia',
         'inggris',

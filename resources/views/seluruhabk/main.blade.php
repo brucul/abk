@@ -18,16 +18,14 @@
                         <div class="panel-body tab-content" id="myTabContent">
                             <div class="tab-pane active" id="daftar" role="tabpanel" aria-labelledby="daftar-tab">
                                 <div class="panel panel-default">
-                                    <form enctype="multipart/form-data" class="form-horizontal" role="form" action="{{route('seluruhabk.store')}}" method="POST">
-                                        @csrf
                                         <div class="panel-heading">
                                             <h3 class="panel-title">{{$sub_title}}</h3><br><br><br>
-                                            {{--  <a href="{{route('pendaftaran.index')}}" class="btn btn-info">Daftar Baru</a>  --}}
+                                            {{--  <a href="{{route('pendaftaran.index')}}" class="btn btn-info">Daftar Baru</a>  
                                             <ul class="panel-controls">
                                                 <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                                 <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                            </ul>
+                                            </ul> --}}
                                         </div>
                                         <div class="panel-body">
                                             <table class="table datatable">
@@ -53,16 +51,24 @@
                                                         <td>{{$pendaftar->no_hp}}</td>
                                                         <td>{{$pendaftar->email}}</td>
                                                         <td>{{$pendaftar->status}}</td>
-                                                        <td><div class="glyphicon glyphicon-eye-open">  <input type="checkbox"  name="dipilih[]" value="{{$pendaftar->id}}" style="text-align: center" ></div></td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                    <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="fa fa-edit"></i> Edit <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="{{ route('seluruhkapal.edit', $pendaftar->id) }}">Edit Biodata</a></li>
+                                                                        <li><a href="{{ route('keluarga.show', $pendaftar->id) }}">Edit Data Keluarga</a></li>
+                                                                        <li><a href="{{ route('pengalaman.show', $pendaftar->id) }}">Edit Data Pengalaman</a></li>
+                                                                        <li><a href="{{ route('dokumen.edit', $pendaftar->id) }}">Edit Data Dokumen</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <button type="button" data-id="{{ $pendaftar->id }}" data-name="{{ $pendaftar->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteBiodata"><i class="fa fa-times"></i> Hapus</button>
+                                                                <a href="{{ route('print-biodata', $pendaftar->id) }}" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="panel-footer">
-                                            <button type="submit"class="btn btn-success pull-right">Pulangkan/Batal </button>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
 

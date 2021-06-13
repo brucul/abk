@@ -34,6 +34,7 @@
                                                         <th>Jenis Kapal</th>
                                                         <th>Bendera Kapal</th>
                                                         <th>Status</th>
+                                                        <th>Tanggal Keberangkatan</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -49,6 +50,7 @@
                                                             <td>{{ $kap->kapal->jenis }}</td>
                                                             <td>{{ $kap->kapal->bendera }}</td>
                                                             <td>{{ $kap->kapal->status }}</td>
+                                                            <td>{{ $kap->tanggal_pemberangkatan }}</td>
                                                             <td>
                                                                 <a href="{{ route('seluruhkapal.show', $kap->id) }}" class="btn btn-info"> Lihat ABK</a>
                                                             </td>
@@ -72,6 +74,7 @@
                                                 <tr>
                                                     <th>NO</th>
                                                     <th>Nama Lengkap</th>
+                                                    <th>Tanggal Pulang</th>
                                                     <th>Kebangsaan</th>
                                                     <th>Alamat</th>
                                                     <th>Nomor HP</th>
@@ -87,6 +90,7 @@
                                                     <tr>
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $awak->nama_lengkap }}</td>
+                                                        <td>{{ $awak->pulang }}</td>
                                                         <td>{{ $awak->kebangsaan }}</td>
                                                         <td>{{ $awak->alamat }}</td>
                                                         <td>{{ $awak->no_hp }}</td>

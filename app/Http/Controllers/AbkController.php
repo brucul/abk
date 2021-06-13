@@ -23,7 +23,7 @@ class AbkController extends Controller
 
         $abk_kapal = pemberangkatan::where('tanggal_pemberangkatan', '!=', null)->get();
         // $abk_kapal = biodata::whereIn('id', $id_abk_kapal)->get();
-        $abk_pulang = biodata::where('status', '')->get();
+        $abk_pulang = biodata::where('status', 'pulang')->get();
 
         return view('abk-kapal.main', compact('awak','title', 'sub_title', 'abk_kapal', 'abk_pulang'));
     }

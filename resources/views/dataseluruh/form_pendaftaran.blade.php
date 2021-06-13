@@ -406,14 +406,14 @@
                                                 <div class="form-group">
                                                     <label class="col-md-2">Mulai</label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control datepicker" name="mulai[]"
+                                                        <input type="date" class="form-control datepicker" name="mulai[]"
                                                             placeholder="Mulai" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2">Sampai</label>
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control datepicker" name="sampai[]"
+                                                        <input type="date" class="form-control datepicker" name="sampai[]"
                                                             placeholder="sampai" />
                                                     </div>
                                                 </div>

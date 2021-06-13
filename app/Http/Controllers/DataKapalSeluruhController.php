@@ -30,10 +30,10 @@ class DataKapalSeluruhController extends Controller
         $sub_title = "List Data Seluruh Pendaftar";
         $peng = "Pengalaman";
         $nonpeng = "Non Pengalaman";
-        $semua_data_pendaftar = biodata::where('status', '')->get();
-        $id_pengalaman = pengalaman_berlayar::pluck('id_biodata');
-        $pengalaman = biodata::whereIn('id', $id_pengalaman)->where('status', '')->get();
-        $non = biodata::whereNotIn('id', $id_pengalaman)->where('status', '')->get();
+        $semua_data_pendaftar = biodata::where('status', '')->orWhere('status', 'pulang')->get();
+        $id_pengalaman = pengalaman_berlayar::groupBy('id_biodata')->pluck('id_biodata');
+        $pengalaman = biodata::whereIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang'])->get();
+        $non = biodata::whereNotIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang'])->get();
         $praproses = biodata::where('status', 'praproses')->get();
         // $kapal = kapal::where('status', 'menyandar')->get();
         $kapal = kapal::all();
@@ -217,7 +217,7 @@ class DataKapalSeluruhController extends Controller
     public function batal(Request $request)
     {
         if ($request->dipilih) {
-            biodata::whereIn('id', $request->dipilih)->update(['status' => '']);
+            biodata::whereIn('id', $request->dipilih)->update(['status' => 'pulang', 'pulang' => date('Y-m-d')]);
             $id = pemberangkatan::whereIn('id_biodata', $request->dipilih)->pluck('id');
             pemberangkatan::whereIn('id', $id)->delete();
             // for ($i=0; $i < sizeof($request->dipilih); $i++) { 

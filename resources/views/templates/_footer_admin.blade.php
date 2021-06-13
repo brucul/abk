@@ -19,8 +19,85 @@
 <script type="text/javascript" src="{{ asset('template/js/plugins/rickshaw/rickshaw.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}">
 </script>
-<script type="text/javascript"
-    src="{{ asset('template/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+
+
+<script>
+    $(document).ready(function() {
+
+        var i = 1;
+
+        $("#addRow").click(function() {
+            i++;
+            $('#addcolum').append(
+                '<div id="row' + i + '">' +
+                '<input type="button" class="btn btn-primary btn_remove " value="remove" id="' + i +
+                '" />' +
+                '<h4 >' +
+                '<center> -- Masukan Data Pengalaman --</center>' +
+                '</h4><br><br>' +
+                '<div class="row" id="addcolum">' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Nama Perusahaan</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="nama_perusahaan[]" placeholder="Nama Perusahaan" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Nama Kapal</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="nama_kapal[]" placeholder="Nama Kapal" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Tipe Kapal</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="tipe_kapal[]" placeholder="Tipe Kapal" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Bendera</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="bendera[]" placeholder="Bendera" />' +
+                '</div>' +
+                '</div>' +
+
+
+                '<div class="form-group">' +
+                '<label class="col-md-2">Jabatan</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="jabatan[]" placeholder="jabatan" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Mulai</label>' +
+                '<div class="col-md-10">' +
+                '<input type="date" class="form-control datepicker" name="mulai[]" placeholder="Mulai" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Sampai</label>' +
+                '<div class="col-md-10">' +
+                '<input type="date" class="form-control datepicker" name="sampai[]" placeholder="sampai" />' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="col-md-2">Alasan Berhenti</label>' +
+                '<div class="col-md-10">' +
+                '<input type="text" class="form-control" name="alasan_berhenti[]" placeholder="Alasan Berhenti" />' +
+                '</div>' +
+                '</div>' +
+                '</div><br><br>' +
+                '</div>');
+        });
+
+        $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+    });
+</script>
+
+<script type="text/javascript" src="{{ asset('template/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins/owl/owl.carousel.min.js') }}"></script>
 
@@ -111,81 +188,6 @@
 
 </script>
 
-<script>
-    $(document).ready(function() {
-
-        var i = 1;
-
-        $("#addRow").click(function() {
-            i++;
-            $('#addcolum').append(
-                '<div id="row' + i + '">' +
-                '<input type="button" class="btn btn-primary btn_remove " value="remove" id="' + i +
-                '" />' +
-                '<h4 >' +
-                '<center> -- Masukan Data Pengalaman --</center>' +
-                '</h4><br><br>' +
-                '<div class="row" id="addcolum">' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Nama Perusahaan</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="nama_perusahaan[]" placeholder="Nama Perusahaan" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Nama Kapal</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="nama_kapal[]" placeholder="Nama Kapal" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Tipe Kapal</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="tipe_kapal[]" placeholder="Tipe Kapal" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Bendera</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="bendera[]" placeholder="Bendera" />' +
-                '</div>' +
-                '</div>' +
-
-
-                '<div class="form-group">' +
-                '<label class="col-md-2">Jabatan</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="jabatan[]" placeholder="jabatan" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Mulai</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control datepicker" name="mulai[]" placeholder="Mulai" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Sampai</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control datepicker" name="sampai[]" placeholder="sampai" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="form-group">' +
-                '<label class="col-md-2">Alasan Berhenti</label>' +
-                '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="alasan_berhenti[]" placeholder="Alasan Berhenti" />' +
-                '</div>' +
-                '</div>' +
-                '</div><br><br>' +
-                '</div>');
-        });
-
-        $(document).on('click', '.btn_remove', function() {
-            var button_id = $(this).attr("id");
-            $('#row' + button_id + '').remove();
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function() {
