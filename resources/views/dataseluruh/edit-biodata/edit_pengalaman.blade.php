@@ -30,56 +30,56 @@
                                         <label class="col-md-2">Nama Perusahaan</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="nama_perusahaan"
-                                            placeholder="Nama Perusahaan" />
+                                            placeholder="Nama Perusahaan" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Nama Kapal</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="nama_kapal"
-                                            placeholder="Nama Kapal" />
+                                            placeholder="Nama Kapal" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Tipe Kapal</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="tipe_kapal"
-                                            placeholder="Tipe Kapal" />
+                                            placeholder="Tipe Kapal" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Bendera</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="bendera"
-                                            placeholder="Bendera" />
+                                            placeholder="Bendera" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Jabatan</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="jabatan"
-                                            placeholder="jabatan" />
+                                            placeholder="jabatan" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Mulai</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control datepicker" name="mulai"
-                                            placeholder="Mulai" />
+                                            placeholder="Mulai" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Sampai</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control datepicker" name="sampai"
-                                            placeholder="sampai" />
+                                            placeholder="sampai" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2">Alasan Berhenti</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" name="alasan_berhenti"
-                                            placeholder="Alasan Berhenti" />
+                                            placeholder="Alasan Berhenti" required/>
                                         </div>
                                     </div>
                                 </div>

@@ -21,7 +21,7 @@ class AbkController extends Controller
         $awak = "Data Awak Kapal";
         $sub_title = "List Data ABK";
 
-        $abk_kapal = pemberangkatan::where('tanggal_pemberangkatan', '!=', null)->get();
+        $abk_kapal = pemberangkatan::where('tanggal_pemberangkatan', '!=', null)->groupBy('id_kapal', 'rencana_pemberangkatan')->get();
         // $abk_kapal = biodata::whereIn('id', $id_abk_kapal)->get();
         $abk_pulang = biodata::where('status', 'pulang')->get();
 

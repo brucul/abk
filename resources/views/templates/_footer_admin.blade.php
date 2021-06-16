@@ -207,44 +207,44 @@
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Hubungan Keluarga</label>' +
                 '<div class="col-md-10">'+
-                '<input type="text" class="form-control" name="hubungan[]" placeholder="ibu/ayah" />' +
+                '<input type="text" class="form-control" name="hubungan[]" placeholder="ibu/ayah" required/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Nama Lengkap</label>' +
                 '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="nama_lengkap_saudara[]" placeholder="Nama Lengkap" />' +
+                '<input type="text" class="form-control" name="nama_lengkap_saudara[]" placeholder="Nama Lengkap" required/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Usia</label>' +
                 '<div class="col-md-10">' +
-                '<input type="number" class="form-control" name="usia[]" placeholder="Usia" />' +
+                '<input type="number" class="form-control" name="usia[]" placeholder="Usia" required/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Pendidikan</label>' +
                 '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="pendidikan[]" placeholder="Pendidikan" />' +
+                '<input type="text" class="form-control" name="pendidikan[]" placeholder="Pendidikan" required/>' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Pekerjaan</label>' +
                 '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="pekerjaan[]" placeholder="pekerjaan" />' +
+                '<input type="text" class="form-control" name="pekerjaan[]" placeholder="pekerjaan" required/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Nomor HP</label>' +
                 '<div class="col-md-10">' +
-                '<input type="number" class="form-control" name="no_hp[]" placeholder="No HP" />' +
+                '<input type="number" class="form-control" name="no_hp[]" placeholder="No HP" required/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                 '<label class="col-md-2 ">Urutan Keluarga</label>' +
                 '<div class="col-md-10">' +
-                '<input type="text" class="form-control" name="urutan_keluarga[]" placeholder="Urutan Keluarga" />' +
+                '<input type="text" class="form-control" name="urutan_keluarga[]" placeholder="Urutan Keluarga" required/>' +
                 '</div>' +
                 '</div>' +
                 '</div><br><br>' +

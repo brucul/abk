@@ -30,14 +30,14 @@ class DataKapalSeluruhController extends Controller
         $sub_title = "List Data Seluruh Pendaftar";
         $peng = "Pengalaman";
         $nonpeng = "Non Pengalaman";
-        $semua_data_pendaftar = biodata::where('status', '')->orWhere('status', 'pulang')->get();
+        $semua_data_pendaftar = biodata::whereIn('status', ['', 'pulang', 'batal'])->get();
         $id_pengalaman = pengalaman_berlayar::groupBy('id_biodata')->pluck('id_biodata');
-        $pengalaman = biodata::whereIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang'])->get();
-        $non = biodata::whereNotIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang'])->get();
+        $pengalaman = biodata::whereIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang', 'batal'])->get();
+        $non = biodata::whereNotIn('id', $id_pengalaman)->whereIn('status', ['', 'pulang', 'batal'])->get();
         $praproses = biodata::where('status', 'praproses')->get();
         // $kapal = kapal::where('status', 'menyandar')->get();
         $kapal = kapal::all();
-        $pemberangkatan = pemberangkatan::where('tanggal_pemberangkatan', null)->groupBy('id_kapal')->get();
+        $pemberangkatan = pemberangkatan::where('tanggal_pemberangkatan', null)->groupBy('id_kapal', 'rencana_pemberangkatan')->get();
         return view('dataseluruh.main', compact('title', 'sub_title', 'peng', 'nonpeng', 'semua_data_pendaftar', 'pengalaman', 'non', 'praproses', 'kapal', 'pemberangkatan'));
     }
 
@@ -64,24 +64,26 @@ class DataKapalSeluruhController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->kapal && $request->tanggal) {
-            for ($i = 0; $i < sizeof($request->dipilih); $i++) {
-                pemberangkatan::create([
-                    'id_biodata' => $request->dipilih[$i],
-                    'id_kapal' => $request->kapal,
-                    'rencana_pemberangkatan' => $request->tanggal,
-                ]);
-                biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
+        if ($request->dipilih) {
+            if ($request->kapal && $request->tanggal) {
+                for ($i = 0; $i < sizeof($request->dipilih); $i++) {
+                    pemberangkatan::create([
+                        'id_biodata' => $request->dipilih[$i],
+                        'id_kapal' => $request->kapal,
+                        'rencana_pemberangkatan' => $request->tanggal,
+                    ]);
+                    biodata::where('id', $request->dipilih[$i])->update(['status' => 'proses']);
+                }
+                kapal::findOrFail($request->kapal)->update(['status' => 'berlayar']);
+            } else {
+                for ($i = 0; $i < sizeof($request->dipilih); $i++) {
+                    biodata::where('id', $request->dipilih[$i])->update(['status' => 'praproses']);
+                }
             }
-            kapal::findOrFail($request->kapal)->update(['status' => 'berlayar']);
+            return back()->with('success', 'Berhasil Menyimpan Data');
         } else {
-            for ($i = 0; $i < sizeof($request->dipilih); $i++) {
-                biodata::where('id', $request->dipilih[$i])->update(['status' => 'praproses']);
-            }
+            return back()->with('error', 'Pilih Calon ABK');
         }
-
-
-        return back()->with('success', 'Berhasil Menyimpan Data');
     }
 
     /**
@@ -214,8 +216,63 @@ class DataKapalSeluruhController extends Controller
         return view('dataseluruh.list_penumpang', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'rencana_pemberangkatan'));
     }
 
+    public function show_abk_diatas_kapal($id)
+    {
+        //
+        $pemberangkatan = pemberangkatan::findOrFail($id);
+        $title = "Data Pemberangkatan";
+        $sub_title = "List Data Seluruh ABK Berlayar";
+        $peng = "Pengalaman";
+        $nonpeng = "Non Pengalaman";
+        $nama_kapal = $pemberangkatan->kapal->nama_kapal;
+        $jenis_kapal = $pemberangkatan->kapal->jenis;
+        $bendera = $pemberangkatan->kapal->bendera;
+        $rencana_pemberangkatan = $pemberangkatan->rencana_pemberangkatan;
+        $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
+            ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
+            ->pluck('id_biodata');
+        
+        $penumpang = biodata::whereIn('id', $id_penumpang)->get();
+        return view('abk-kapal.list_penumpang', compact('id', 'penumpang', 'title', 'sub_title', 'peng', 'nama_kapal', 'jenis_kapal', 'bendera', 'rencana_pemberangkatan'));
+    }
+
     public function batal(Request $request)
     {
+        $biodata = biodata::whereIn('id', $request->dipilih)->first();
+        $id_kapal = $biodata->pemberangkatan->id_kapal;
+        $rencana_pemberangkatan = $biodata->pemberangkatan->rencana_pemberangkatan;
+        if ($request->dipilih) {
+            biodata::whereIn('id', $request->dipilih)->update(['status' => 'batal']);
+            $id = pemberangkatan::whereIn('id_biodata', $request->dipilih)->pluck('id');
+            pemberangkatan::whereIn('id', $id)->delete();
+            // for ($i=0; $i < sizeof($request->dipilih); $i++) { 
+            //     biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
+            // }
+        }
+
+        $count = pemberangkatan::where([
+                            ['id_kapal', $id_kapal], 
+                            ['rencana_pemberangkatan', $rencana_pemberangkatan]
+                        ])->count();
+
+        $pemberangkatan = pemberangkatan::where([
+                            ['id_kapal', $id_kapal], 
+                            ['rencana_pemberangkatan', $rencana_pemberangkatan]
+                        ])->first();
+        
+        if ($count >= 1) {
+            return redirect()->route('seluruhkapal.show', $pemberangkatan->id)->with('success', 'Berhasil Menyimpan Data');
+        }else{
+            return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
+        }
+        
+    }
+
+    public function pulang(Request $request)
+    {
+        $biodata = biodata::whereIn('id', $request->dipilih)->first();
+        $id_kapal = $biodata->pemberangkatan->id_kapal;
+        $rencana_pemberangkatan = $biodata->pemberangkatan->rencana_pemberangkatan;
         if ($request->dipilih) {
             biodata::whereIn('id', $request->dipilih)->update(['status' => 'pulang', 'pulang' => date('Y-m-d')]);
             $id = pemberangkatan::whereIn('id_biodata', $request->dipilih)->pluck('id');
@@ -224,12 +281,22 @@ class DataKapalSeluruhController extends Controller
             //     biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
             // }
         }
-        if (pemberangkatan::count()) {
-            return redirect()->back();
-        }else{
-            return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
-        }
         
+        $count = pemberangkatan::where([
+                            ['id_kapal', $id_kapal], 
+                            ['rencana_pemberangkatan', $rencana_pemberangkatan]
+                        ])->count();
+
+        $pemberangkatan = pemberangkatan::where([
+                            ['id_kapal', $id_kapal], 
+                            ['rencana_pemberangkatan', $rencana_pemberangkatan]
+                        ])->first();
+        
+        if ($count >= 1) {
+            return redirect()->route('seluruhkapal.show_abk', $pemberangkatan->id)->with('success', 'Berhasil Menyimpan Data');
+        }else{
+            return redirect()->route('abk-kapal.index')->with('success', 'Berhasil Menyimpan Data');
+        }
     }
 
     public function berangkatkan($id)
@@ -238,8 +305,8 @@ class DataKapalSeluruhController extends Controller
         $id_penumpang = pemberangkatan::where('id_kapal', $pemberangkatan->id_kapal)
             ->where('rencana_pemberangkatan', $pemberangkatan->rencana_pemberangkatan)
             ->pluck('id_biodata');
-        
-        $penumpang = pemberangkatan::whereIn('id_biodata', $id_penumpang)->update(['tanggal_pemberangkatan' => date('Y-m-d')]);
+        biodata::whereIn('id', $id_penumpang)->update(['status' => 'berlayar']);
+        pemberangkatan::whereIn('id_biodata', $id_penumpang)->update(['tanggal_pemberangkatan' => date('Y-m-d')]);
         return redirect()->back()->with('success', 'Berhasil Menyimpan Data');
     }
 

@@ -53,7 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/seluruhkapal/berangkat/{id}', [DataKapalSeluruhController::class, 'berangkatkan'])->name('seluruhkapal.berangkatkan');
 
     Route::post('datakapal/pulang', [DataKapalController::class, 'pulang'])->name('datakapal.pulang');
-    Route::post('seluruhkapal/pulang', [DataKapalSeluruhController::class, 'batal'])->name('seluruhkapal.batal');
+    Route::post('seluruhkapal/batal', [DataKapalSeluruhController::class, 'batal'])->name('seluruhkapal.batal');
+    Route::post('seluruhkapal/pulang', [DataKapalSeluruhController::class, 'pulang'])->name('seluruhkapal.pulang');
+    Route::get('seluruhkapal/abk-kapal/{id}', [DataKapalSeluruhController::class, 'show_abk_diatas_kapal'])->name('seluruhkapal.show_abk');
 
 
     Route::get('print-biodata/{id}', [DataKapalSeluruhController::class, 'print_biodata'])->name('print-biodata');

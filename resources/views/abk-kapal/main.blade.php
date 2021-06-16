@@ -52,7 +52,7 @@
                                                             <td>{{ $kap->kapal->status }}</td>
                                                             <td>{{ $kap->tanggal_pemberangkatan }}</td>
                                                             <td>
-                                                                <a href="{{ route('seluruhkapal.show', $kap->id) }}" class="btn btn-info"> Lihat ABK</a>
+                                                                <a href="{{ route('seluruhkapal.show_abk', $kap->id) }}" class="btn btn-info"> Lihat ABK</a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -79,6 +79,7 @@
                                                     <th>Alamat</th>
                                                     <th>Nomor HP</th>
                                                     <th>Email</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,6 +96,20 @@
                                                         <td>{{ $awak->alamat }}</td>
                                                         <td>{{ $awak->no_hp }}</td>
                                                         <td>{{ $awak->email }}</td>
+                                                        <td>
+                                                                {{--  Edit  --}}
+                                                                <div class="btn-group">
+                                                                    <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="fa fa-edit"></i> Edit <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li><a href="{{ route('seluruhkapal.edit', $awak->id) }}">Edit Biodata</a></li>
+                                                                        <li><a href="{{ route('keluarga.show', $awak->id) }}">Edit Data Keluarga</a></li>
+                                                                        <li><a href="{{ route('pengalaman.show', $awak->id) }}">Edit Data Pengalaman</a></li>
+                                                                        <li><a href="{{ route('dokumen.edit', $awak->id) }}">Edit Data Dokumen</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <button type="button" data-id="{{ $awak->id }}" data-name="{{ $awak->nama_lengkap }}" class="btn btn-danger" data-toggle="modal" data-target="#deleteBiodata"><i class="fa fa-times"></i> Hapus</button>
+                                                                <a href="{{ route('print-biodata', $awak->id) }}" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
+                                                            </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -125,4 +140,27 @@
         }
 
     </script>
+    {{-- Modal Delete --}}
+<div class="modal modal-default fade" id="deleteBiodata">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="deleteUser">Delete User</h3>
+            </div>
+            <div class="modal-body">
+                <h5 id="text-delete"></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger delete_user"><i class="fa fa-trash"></i> Hapus Data</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection

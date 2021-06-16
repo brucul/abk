@@ -64,21 +64,21 @@
                                                         <label class="col-md-3 control-label">Posisi</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="posisi"
-                                                                placeholder="masukan posisi" />
+                                                                placeholder="masukan posisi" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="nama_lengkap"
-                                                                placeholder="masukan nama lengkap" />
+                                                                placeholder="masukan nama lengkap" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Panggilan</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="nama_panggilan"
-                                                                placeholder="masukan nama panggilan" />
+                                                                placeholder="masukan nama panggilan" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -100,7 +100,7 @@
                                                         <div class="col-md-9">
 
                                                             <input type="text" class="form-control datepicker"
-                                                                value="2021-01-01" name="tanggal_lahir">
+                                                                value="2021-01-01" name="tanggal_lahir" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -123,7 +123,7 @@
                                                         <label class="col-md-3 control-label">Kebangsaan</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="kebangsaan"
-                                                                placeholder="masukan kebangsaan" />
+                                                                placeholder="masukan kebangsaan" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -142,35 +142,35 @@
                                                         <label class="col-md-3 control-label">No KTP/SIM</label>
                                                         <div class="col-md-9">
                                                             <input type="number" class="form-control" name="ktp_sim"
-                                                                placeholder="masukan no ktp/sim" />
+                                                                placeholder="masukan no ktp/sim" requiredrequired/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tinggi Badan</label>
                                                         <div class="col-md-9">
                                                             <input type="number" class="form-control" name="tinggi_badan"
-                                                                placeholder="masukan tinggi badan /cm" />
+                                                                placeholder="masukan tinggi badan /cm" requiredrequired/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Berat Badan</label>
                                                         <div class="col-md-9">
                                                             <input type="number" class="form-control" name="berat_badan"
-                                                                placeholder="masukan berat badan /kg" />
+                                                                placeholder="masukan berat badan /kg" requiredrequired/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Warna Mata</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="warna_mata"
-                                                                placeholder="masukan warna mata" />
+                                                                placeholder="masukan warna mata" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Warna Rambut</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="warna_rambut"
-                                                                placeholder="masukan warna rambut" />
+                                                                placeholder="masukan warna rambut" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,35 +180,35 @@
                                                         <label class="col-md-3 control-label">Bentuk Wajah</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="bentuk_wajah"
-                                                                placeholder="masukan bentuk wajah" />
+                                                                placeholder="masukan bentuk wajah" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Ciri Fisik Lain</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="ciri_lain"
-                                                                placeholder="masukan ciri fisik lainnya" />
+                                                                placeholder="masukan ciri fisik lainnya" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Alamat</label>
                                                         <div class="col-md-9">
                                                             <textarea class="form-control" rows="4" name="alamat"
-                                                                placeholder="masukan alamat lengkap"></textarea>
+                                                                placeholder="masukan alamat lengkap" required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">No HP/Telepon</label>
                                                         <div class="col-md-9">
                                                             <input type="number" class="form-control" name="nohp"
-                                                                placeholder="masukan no hp" />
+                                                                placeholder="masukan no hp" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">No Telepon Darurat</label>
                                                         <div class="col-md-9">
                                                             <input type="number" class="form-control" name="telepon_darurat"
-                                                                placeholder="masukan no telepon darurat" />
+                                                                placeholder="masukan no telepon darurat" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -216,21 +216,21 @@
                                                             Kandung</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="saudara_kandung"
-                                                                placeholder="masukan saudara kandung" />
+                                                                placeholder="masukan saudara kandung" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Email</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="email"
-                                                                placeholder="masukan email" />
+                                                                placeholder="masukan email" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tinggal Bersama</label>
                                                         <div class="col-md-9">
                                                             <input type="text" class="form-control" name="tinggal_bersama"
-                                                                placeholder=" masukan tinggal bersama" />
+                                                                placeholder=" masukan tinggal bersama" required/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -300,28 +300,28 @@
                                                     <label class="col-md-2 ">Hubungan Keluarga</label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control" name="hubungan[]"
-                                                            placeholder="ibu/ayah" />
+                                                            placeholder="ibu/ayah" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2 ">Nama Lengkap</label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control" name="nama_lengkap_saudara[]"
-                                                            placeholder="Nama Lengkap" />
+                                                            placeholder="Nama Lengkap" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2 ">Usia</label>
                                                     <div class="col-md-10">
                                                         <input type="number" class="form-control" name="usia[]"
-                                                            placeholder="Usia" />
+                                                            placeholder="Usia" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2 ">Pendidikan</label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control" name="pendidikan[]"
-                                                            placeholder="Pendidikan" />
+                                                            placeholder="Pendidikan" required/>
                                                     </div>
                                                 </div>
 
@@ -329,28 +329,28 @@
                                                     <label class="col-md-2 ">Pekerjaan</label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control" name="pekerjaan[]"
-                                                            placeholder="pekerjaan" />
+                                                            placeholder="pekerjaan" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2 ">Nomor HP</label>
                                                     <div class="col-md-10">
                                                         <input type="number" class="form-control" name="no_hp[]"
-                                                            placeholder="No HP" />
+                                                            placeholder="No HP" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-2 ">Urutan Keluarga</label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control" name="urutan_keluarga[]"
-                                                            placeholder="Urutan Keluarga" />
+                                                            placeholder="Urutan Keluarga" required/>
                                                     </div>
                                                 </div><br><br>
                                             </div>
 
                                                 <div class="form-group">
                                                     <center>
-                                                        <input type="button" class="btn btn-primary" value="Tambah Anggota Keluarga" id="addButton" />
+                                                        <input type="button" class="btn btn-primary" value="Tambah Anggota Keluarga" id="addButton"/>
                                                     </center>
                                                 </div>
                                             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -503,11 +503,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-3">
-                                                        <input type="text" class="form-control datepicker" value="{{date('Y-m-d')}}" name="q3">
+                                                        <input type="text" class="form-control datepicker" value="{{date('Y-m-d')}}" name="q3" required>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <input type="text" class="form-control" name="q4"
-                                                            placeholder="Gaji" />
+                                                            placeholder="Gaji" required/>
                                                     </div>
                                                 </div>
                                                 
@@ -515,7 +515,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-12">Darimana anda mendapat informasi mengenai lowongan kerja ini?</label>
                                                     <div class="row col-md-6">
-                                                        <input type="text" class="form-control" name="q5">
+                                                        <input type="text" class="form-control" name="q5" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -531,7 +531,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-12">Ceritakan tentang diri anda yang mungkin akan membantu penilaian kami terhadap anda</label>
                                                     <div class="row col-md-12">
-                                                        <textarea class="form-control" name="q7"></textarea>
+                                                        <textarea class="form-control" name="q7" required></textarea>
                                                     </div>
                                                 </div>
                                                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

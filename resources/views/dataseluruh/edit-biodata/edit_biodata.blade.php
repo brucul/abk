@@ -16,21 +16,21 @@
                             <label class="col-md-3 control-label">Posisi</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="posisi"
-                                placeholder="masukan posisi" value="{{$biodata->posisi}}" />
+                                placeholder="masukan posisi" value="{{$biodata->posisi}}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Nama Lengkap</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="nama_lengkap"
-                                placeholder="masukan nama lengkap" value="{{$biodata->nama_lengkap}}" />
+                                placeholder="masukan nama lengkap" value="{{$biodata->nama_lengkap}}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Nama Panggilan</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="nama_panggilan"
-                                placeholder="masukan nama panggilan" value="{{$biodata->nama_panggilan}}" />
+                                placeholder="masukan nama panggilan" value="{{$biodata->nama_panggilan}}" required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -48,8 +48,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tanggal Lahir</label>
                             <div class="col-md-9">
-
-                                <input type="text" class="form-control datepicker" value="{{$biodata->tanggal_lahir}}" name="tanggal_lahir">
+                                <input type="text" class="form-control datepicker" value="{{$biodata->tanggal_lahir}}" name="tanggal_lahir" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,7 +68,7 @@
                             <label class="col-md-3 control-label">Kebangsaan</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="kebangsaan"
-                                placeholder="masukan kebangsaan" value="{{ $biodata->kebangsaan }}" />
+                                placeholder="masukan kebangsaan" value="{{ $biodata->kebangsaan }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -88,35 +87,35 @@
                             <label class="col-md-3 control-label">No KTP/SIM</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" name="ktp_sim"
-                                placeholder="masukan no ktp/sim" value="{{ $biodata->no_ktp }}" />
+                                placeholder="masukan no ktp/sim" value="{{ $biodata->no_ktp }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tinggi Badan</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" name="tinggi_badan"
-                                placeholder="masukan tinggi badan /cm" value="{{ $biodata->tinggi_badan }}" />
+                                placeholder="masukan tinggi badan /cm" value="{{ $biodata->tinggi_badan }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Berat Badan</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" name="berat_badan"
-                                placeholder="masukan berat badan /kg" value="{{ $biodata->berat_badan }}" />
+                                placeholder="masukan berat badan /kg" value="{{ $biodata->berat_badan }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Warna Mata</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="warna_mata"
-                                placeholder="masukan warna mata" value="{{ $biodata->warna_mata }}" />
+                                placeholder="masukan warna mata" value="{{ $biodata->warna_mata }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Warna Rambut</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="warna_rambut"
-                                placeholder="masukan warna rambut" value="{{ $biodata->warna_rambut }}" />
+                                placeholder="masukan warna rambut" value="{{ $biodata->warna_rambut }}" required/>
                             </div>
                         </div>
                     </div>
@@ -126,34 +125,34 @@
                             <label class="col-md-3 control-label">Bentuk Wajah</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="bentuk_wajah"
-                                placeholder="masukan bentuk wajah" value="{{ $biodata->bentuk_wajah }}" />
+                                placeholder="masukan bentuk wajah" value="{{ $biodata->bentuk_wajah }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Ciri Fisik Lain</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="ciri_lain"
-                                placeholder="masukan ciri fisik lainnya" value="{{ $biodata->ciri_lain }}" />
+                                placeholder="masukan ciri fisik lainnya" value="{{ $biodata->ciri_lain }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Alamat</label>
                             <div class="col-md-9">
                                 <textarea class="form-control" rows="4" name="alamat"
-                                placeholder="masukan alamat lengkap">{{ $biodata->alamat }}</textarea>
+                                placeholder="masukan alamat lengkap" required>{{ $biodata->alamat }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">No HP/Telepon</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" name="nohp"
-                                placeholder="masukan no hp" value="{{ $biodata->no_hp }}" />
+                                placeholder="masukan no hp" value="{{ $biodata->no_hp }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">No Telepon Darurat</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" name="telepon_darurat" placeholder="masukan no telepon darurat" value="{{ $biodata->telepon_darurat }}" />
+                                <input type="number" class="form-control" name="telepon_darurat" placeholder="masukan no telepon darurat" value="{{ $biodata->telepon_darurat }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -161,21 +160,21 @@
                             Kandung</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="saudara_kandung"
-                                placeholder="masukan saudara kandung" value="{{ $biodata->saudara_kandung }}" />
+                                placeholder="masukan saudara kandung" value="{{ $biodata->saudara_kandung }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Email</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="email"
-                                placeholder="masukan email" value="{{ $biodata->email }}" />
+                                placeholder="masukan email" value="{{ $biodata->email }}" required/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Tinggal Bersama</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="tinggal_bersama"
-                                placeholder=" masukan tinggal bersama" value="{{ $biodata->tinggal_bersama }}" />
+                                placeholder=" masukan tinggal bersama" value="{{ $biodata->tinggal_bersama }}" required/>
                             </div>
                         </div>
                         <div class="form-group">

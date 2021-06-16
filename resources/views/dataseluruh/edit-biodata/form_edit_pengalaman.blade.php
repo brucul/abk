@@ -16,49 +16,49 @@
                     <div class="form-group row">
                         <label class="col-md-2">Nama Perusahaan</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="nama_perusahaan" value="{{ $pengalaman->nama_perusahaan }}" placeholder="Nama Perusahaan" />
+                            <input type="text" class="form-control" name="nama_perusahaan" value="{{ $pengalaman->nama_perusahaan }}" placeholder="Nama Perusahaan" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Nama Kapal</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="nama_kapal" value="{{ $pengalaman->nama_kapal }}" placeholder="Nama Kapal" />
+                            <input type="text" class="form-control" name="nama_kapal" value="{{ $pengalaman->nama_kapal }}" placeholder="Nama Kapal" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Tipe Kapal</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="tipe_kapal" value="{{ $pengalaman->tipe_kapal }}" placeholder="Tipe Kapal" />
+                            <input type="text" class="form-control" name="tipe_kapal" value="{{ $pengalaman->tipe_kapal }}" placeholder="Tipe Kapal" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Bendera</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="bendera" value="{{ $pengalaman->bendera }}" placeholder="Bendera" />
+                            <input type="text" class="form-control" name="bendera" value="{{ $pengalaman->bendera }}" placeholder="Bendera" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Jabatan</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="jabatan" value="{{ $pengalaman->jabatan }}" placeholder="jabatan" />
+                            <input type="text" class="form-control" name="jabatan" value="{{ $pengalaman->jabatan }}" placeholder="jabatan" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Mulai</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control datepicker" name="mulai" value="{{ $pengalaman->mulai }}" placeholder="Mulai" />
+                            <input type="text" class="form-control datepicker" name="mulai" value="{{ $pengalaman->mulai }}" placeholder="Mulai" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Sampai</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control datepicker" name="sampai" value="{{ $pengalaman->sampai }}" placeholder="sampai" />
+                            <input type="text" class="form-control datepicker" name="sampai" value="{{ $pengalaman->sampai }}" placeholder="sampai" required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">Alasan Berhenti</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="alasan_berhenti" value="{{ $pengalaman->alasan_berhenti }}" placeholder="Alasan Berhenti" />
+                            <input type="text" class="form-control" name="alasan_berhenti" value="{{ $pengalaman->alasan_berhenti }}" placeholder="Alasan Berhenti" required/>
                         </div>
                     </div>
                 </div>
