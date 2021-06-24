@@ -267,7 +267,7 @@
                                     @csrf
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">{{ $title }}</h3>
+                                            <h3 class="panel-title">List Order</h3>
                                             <ul class="panel-controls">
                                                 <li><a href="#" class="panel-collapse"><span
                                                             class="fa fa-angle-down"></span></a></li>
@@ -346,7 +346,7 @@
                             <div class="tab-pane " id="selesai" role="tabpanel" aria-labelledby="selesai-tab">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">{{ $sub_title }}</h3><br>
+                                        <h3 class="panel-title">List Proses Order</h3><br>
                                         <ul class="panel-controls">
                                             <li><a href="#" class="panel-collapse"><span
                                                         class="fa fa-angle-down"></span></a></li>

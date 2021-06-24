@@ -69,6 +69,11 @@
                     <button type="button" class="close" data-dismiss="alert">×</button> 
                     <strong>{{ $message }}</strong>
                 </div>
+                @elseif ($message = Session::get('errors'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                    <strong>{{ $message->first() }}</strong>
+                </div>
                 @endif
                 @yield('content')
             </div>

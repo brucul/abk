@@ -8,6 +8,7 @@ use App\Models\kapal;
 use App\Models\pemberangkatan;
 use App\Models\pengalaman_berlayar;
 use App\Models\data_keluarga;
+use App\Models\history;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -18,10 +19,21 @@ class DataKapalSeluruhController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
         ini_set('max_execution_time', 1000);
     }
+
+    // public function history($id_biodata, $id_kapal, $ket)
+    // {
+    //     $history = [
+    //         'id_biodata' => $id_biodata,
+    //         'id_kapal' => $id_kapal,
+    //         'keterangan' => $ket,
+    //         'tanggal' => date('Y-m-d'),
+    //     ]
+    // }
 
 
     public function index()
@@ -281,6 +293,16 @@ class DataKapalSeluruhController extends Controller
             //     biodata::where('id', $request->dipilih[$i])->update(['status' => 'berlayar']);
             // }
         }
+
+        $keterangan = 'Pulang';
+        for ($i=0; $i < sizeof($request->dipilih); $i++) { 
+            history::create([
+                'id_biodata' => $request->dipilih[$i],
+                'id_kapal' => $id_kapal,
+                'keterangan' => $keterangan,
+                'tanggal' => date('Y-m-d'),
+            ]);
+        }
         
         $count = pemberangkatan::where([
                             ['id_kapal', $id_kapal], 
@@ -307,6 +329,17 @@ class DataKapalSeluruhController extends Controller
             ->pluck('id_biodata');
         biodata::whereIn('id', $id_penumpang)->update(['status' => 'berlayar']);
         pemberangkatan::whereIn('id_biodata', $id_penumpang)->update(['tanggal_pemberangkatan' => date('Y-m-d')]);
+        $data = pemberangkatan::whereIn('id_biodata', $id_penumpang)->get();
+        $keterangan = 'Berangkat';
+        for ($i=0; $i < sizeof($data); $i++) { 
+            history::create([
+                'id_biodata' => $data[$i]['id_biodata'],
+                'id_kapal' => $data[$i]['id_kapal'],
+                'keterangan' => $keterangan,
+                'tanggal' => date('Y-m-d'),
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Berhasil Menyimpan Data');
     }
 

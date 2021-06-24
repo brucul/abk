@@ -12,6 +12,7 @@ use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PengalamanController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/pengalaman', PengalamanController::class);
     Route::resource('/informasi', InformasiController::class);
     Route::resource('/dokumen', DokumenController::class);
+    Route::resource('/history', HistoryController::class);
 
     Route::get('/seluruhkapal/berangkat/{id}', [DataKapalSeluruhController::class, 'berangkatkan'])->name('seluruhkapal.berangkatkan');
 

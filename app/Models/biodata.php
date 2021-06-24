@@ -9,6 +9,7 @@ use App\Models\pemberangkatan;
 use App\Models\informasi;
 use App\Models\berkas_dokumen;
 use App\Models\data_keluarga;
+use App\Models\history;
 
 class biodata extends Model
 {
@@ -51,6 +52,10 @@ class biodata extends Model
     public function pengalaman()
     {
         return $this->hasMany(pengalaman_berlayar::class, 'id_biodata');
+    }
+    public function history()
+    {
+        return $this->hasMany(history::class, 'id_biodata');
     }
     public function pemberangkatan()
     {

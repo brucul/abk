@@ -409,6 +409,35 @@
 
     })
 </script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#deleteHistory').on("show.bs.modal", (e) => {
+
+            $('#text-delete-history').text("Yakin ingin Menghapus History "+$(e.relatedTarget).data('name')+" ?")
+
+            $('.delete_history').click( () => {
+                $.ajax({
+                    url : "/history/"+$(e.relatedTarget).data('id'),
+                    method : "POST",
+                    cache : false,
+                    data : {
+                        _method: "DELETE",
+                    },
+                    success : (res) => {
+                        location.reload()
+                    }
+                })
+            })
+        })
+
+    })
+</script>
 
 <script type="text/javascript" src="{{ asset('template/js/settings.js') }}"></script>
 <script type="text/javascript" src="{{ asset('template/js/plugins.js') }}"></script>

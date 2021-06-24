@@ -12,6 +12,9 @@ use App\Models\data_keluarga;
 use App\Models\pengalaman_berlayar;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\BiodataRequest;
+use App\Http\Requests\KeluargaRequest;
+use App\Http\Requests\InformasiRequest;
 
 class PendaftaranController extends Controller
 {
@@ -20,7 +23,7 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function biodata(Request $request, $status)
+    public function biodata(BiodataRequest $request, $status)
     {
         $biodata = [
             'nama_lengkap' => $request->nama_lengkap,
@@ -52,7 +55,7 @@ class PendaftaranController extends Controller
         ];
         return $biodata;
     }
-    public function data_keluarga(Request $request, $id_biodata)
+    public function data_keluarga(KeluargaRequest $request, $id_biodata)
     {
         $data_keluarga = [
             'id_biodata' => $id_biodata,
@@ -121,7 +124,7 @@ class PendaftaranController extends Controller
         return $dokumen;
     }
 
-    public function informasi(Request $request, $id_biodata, $q2)
+    public function informasi(InformasiRequest $request, $id_biodata, $q2)
     {
         $informasi = [
             'id_biodata' => $id_biodata,
@@ -172,7 +175,7 @@ class PendaftaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BiodataRequest $request)
     {
         $status = '';
         $biodata = biodata::create($this->biodata($request, $status));
@@ -348,6 +351,7 @@ class PendaftaranController extends Controller
         
         return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
     }
+
 
     /**
      * Display the specified resource.
