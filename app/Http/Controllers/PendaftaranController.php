@@ -23,7 +23,7 @@ class PendaftaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function biodata(BiodataRequest $request, $status)
+    public function biodata($request, $status)
     {
         $biodata = [
             'nama_lengkap' => $request->nama_lengkap,
@@ -55,7 +55,7 @@ class PendaftaranController extends Controller
         ];
         return $biodata;
     }
-    public function data_keluarga(KeluargaRequest $request, $id_biodata)
+    public function data_keluarga($request, $id_biodata)
     {
         $data_keluarga = [
             'id_biodata' => $id_biodata,
@@ -69,7 +69,7 @@ class PendaftaranController extends Controller
         ];
         return $data_keluarga;
     }
-    public function pengalaman_berlayar(Request $request, $id_biodata)
+    public function pengalaman_berlayar($request, $id_biodata)
     {
         $pengalaman_berlayar = [
             'id_biodata' => $id_biodata,
@@ -84,7 +84,7 @@ class PendaftaranController extends Controller
         ];
         return $pengalaman_berlayar;
     }
-    public function dokumen(Request $request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu)
+    public function dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu)
     {
         $dokumen = [
             'id_biodata' => $id_biodata,
@@ -124,7 +124,7 @@ class PendaftaranController extends Controller
         return $dokumen;
     }
 
-    public function informasi(InformasiRequest $request, $id_biodata, $q2)
+    public function informasi($request, $id_biodata, $q2)
     {
         $informasi = [
             'id_biodata' => $id_biodata,
@@ -139,7 +139,7 @@ class PendaftaranController extends Controller
         return $informasi;
     }
 
-    public function penyakit(Request $request, $id_quest)
+    public function penyakit($request, $id_quest)
     {
         $penyakit = [
             'id_quest' => $id_quest,
@@ -177,6 +177,10 @@ class PendaftaranController extends Controller
      */
     public function store(BiodataRequest $request)
     {
+        if (isset($request->validator) && $request->validator->fails()) {
+            return back()->with('errors', 'Data tidak lengkap.');
+        }
+
         $status = '';
         $biodata = biodata::create($this->biodata($request, $status));
         $id_biodata = $biodata->id;
@@ -184,8 +188,9 @@ class PendaftaranController extends Controller
         $kosongimg = 'default.jpg';
         // data_keluarga::create($this->data_keluarga($request, $id_biodata));
         $data = $this->data_keluarga($request, $id_biodata);
+        // return $request->hubungan[0];
         for ($i=0; $i < count($request->hubungan); $i++) { 
-            data_keluarga::create([
+            $keluarga = data_keluarga::create([
                 'id_biodata' => $id_biodata,
                 'hubungan' => $data['hubungan'][$i],
                 'nama_lengkap' => $data['nama_lengkap'][$i],

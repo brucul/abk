@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BiodataRequest extends FormRequest
@@ -49,20 +50,27 @@ class BiodataRequest extends FormRequest
             'inggris' => 'required',
             'spanyol' => 'required',
             'mandarin' => 'required',
+            
             'hubungan' => 'required',
-            //keluarga
             'nama_lengkap_saudara' => 'required',
             'usia' => 'required',
             'pendidikan' => 'required',
             'pekerjaan' => 'required',
             'no_hp' => 'required',
             'urutan_keluarga' => 'required',
-            //informasi
+            
             'q1' => 'required',
             'q3' => 'required',
             'q4' => 'required',
             'q5' => 'required',
             'q7' => 'required',
         ];
+    }
+    
+    public $validator = null;
+
+    protected function failedValidation(Validator $validator)
+    {
+        $this->validator = $validator;
     }
 }
