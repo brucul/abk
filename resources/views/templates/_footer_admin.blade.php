@@ -183,6 +183,12 @@
             browseClass: "btn btn-danger",
             fileType: "any"
         });
+        $("#all_doc").fileinput({
+            showUpload: false,
+            showCaption: false,
+            browseClass: "btn btn-danger",
+            fileType: "any"
+        });
 
     });
 

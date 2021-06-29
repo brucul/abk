@@ -742,6 +742,14 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <label>SEMUA DOKUMEN</label><br />
+                                                            <input type="file" multiple id="all_doc" name="all_doc"
+                                                                accept="application/pdf, image/*" />
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

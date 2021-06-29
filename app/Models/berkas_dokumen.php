@@ -23,6 +23,7 @@ class berkas_dokumen extends Model
         'pas_foto_putih',
         'pas_foto_biru',
         'mcu',
+        'all_doc',
         'no_ktp',
         'exp_ktp',
         'no_akte',

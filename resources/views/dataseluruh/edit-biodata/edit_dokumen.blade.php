@@ -181,6 +181,13 @@
                                     <input type="file" class="fileinput btn-danger" name="mcu" data-filename-placement="inside" title="{{ $dokumen->mcu }}" accept="application/pdf, image/*" value="{{ $dokumen->mcu }}"/>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label>SEMUA DOKUMEN</label><br />
+                                    <input type="file" class="fileinput btn-danger" name="all_doc" data-filename-placement="inside" title="{{ $dokumen->all_doc }}" accept="application/pdf, image/*" value="{{ $dokumen->all_doc }}"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

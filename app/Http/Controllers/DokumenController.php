@@ -15,7 +15,7 @@ class DokumenController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function dokumen(Request $request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu)
+    public function dokumen(Request $request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu, $all_doc)
     {
         $dokumen = [
             'id_biodata' => $id_biodata,
@@ -31,6 +31,7 @@ class DokumenController extends Controller
             'pas_foto_putih' => $pas_foto_putih,
             'pas_foto_biru' => $pas_foto_biru,
             'mcu' => $mcu,
+            'all_doc' => $all_doc,
             'no_ktp' => $request->no_ktp,
             'exp_ktp' => $request->exp_ktp,
             'no_akte' => $request->no_akte,
@@ -233,8 +234,17 @@ class DokumenController extends Controller
             $file->storeAs($filePath, $mcu);
             Storage::delete($filePath.$berkas_dokumen->mcu);
         }
+        //all_doc
+        if ($request->file('all_doc') == null) {
+            $all_doc = $berkas_dokumen->all_doc;
+        } else {
+            $file = $request->file('all_doc');
+            $all_doc = "all_doc-" . time() . "." . $file->extension();
+            $file->storeAs($filePath, $all_doc);
+            Storage::delete($filePath.$berkas_dokumen->all_doc);
+        }
 
-        $berkas_dokumen->update($this->dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu));
+        $berkas_dokumen->update($this->dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu, $all_doc));
 
         return redirect()->route('seluruhkapal.index')->with('success', 'Berhasil Menyimpan Data');
     }

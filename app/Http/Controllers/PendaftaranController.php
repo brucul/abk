@@ -84,7 +84,7 @@ class PendaftaranController extends Controller
         ];
         return $pengalaman_berlayar;
     }
-    public function dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu)
+    public function dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu, $all_doc)
     {
         $dokumen = [
             'id_biodata' => $id_biodata,
@@ -100,6 +100,7 @@ class PendaftaranController extends Controller
             'pas_foto_putih' => $pas_foto_putih,
             'pas_foto_biru' => $pas_foto_biru,
             'mcu' => $mcu,
+            'all_doc' => $all_doc,
             'no_ktp' => $request->no_ktp,
             'exp_ktp' => $request->exp_ktp,
             'no_akte' => $request->no_akte,
@@ -303,8 +304,16 @@ class PendaftaranController extends Controller
             $mcu = "mcu-" . $request->no_midikal . "-" . time() . "." . $file->extension();
             $file->storeAs($filePath, $mcu);
         }
+        //all_doc
+        if ($request->file('all_doc') == null) {
+            $all_doc = $kosongpdf;
+        } else {
+            $file = $request->file('all_doc');
+            $all_doc = "all_doc-" . time() . "." . $file->extension();
+            $file->storeAs($filePath, $all_doc);
+        }
 
-        berkas_dokumen::create($this->dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu));
+        berkas_dokumen::create($this->dokumen($request, $id_biodata, $ktp, $akte, $ijazah, $buku_nikah, $kartu_keluarga, $skck, $bst, $paspor, $buku_pelaut, $pas_foto_putih, $pas_foto_biru, $mcu, $all_doc));
 
         
         // $field = 0;
