@@ -134,10 +134,10 @@
                                                     <tr>
                                                         <th>NO</th>
                                                         <th>Nama Lengkap</th>
-                                                        <th>Alamat</th>
                                                         <th>Pengalaman</th>
-                                                        <th>Email</th>
-                                                        <th>Alamat</th>
+                                                        <th>No. BST</th>
+                                                        <th>No. Paspor</th>
+                                                        <th>No. Buku Pelaut</th>
                                                         <th>Aksi</th>
                                                         <th>Order</th>
                                                     </tr>
@@ -151,14 +151,14 @@
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $p->nama_lengkap }}</td>
-                                                            <td>{{ $p->alamat }}</td>
                                                             <td>
                                                                 @foreach ($p->pengalaman as $peng)
                                                                     -- {{$peng->nama_perusahaan}}<br>
                                                                 @endforeach
                                                             </td>
-                                                            <td>{{ $p->email }}</td>
-                                                            <td>{{ $p->alamat }}</td>
+                                                            <td>{{ $p->dokumen->no_bst }}</td>
+                                                            <td>{{ $p->dokumen->no_paspor }}</td>
+                                                            <td>{{ $p->dokumen->no_pelaut }}</td>
 
                                                             <td>
                                                                 {{--  Edit  --}}
@@ -211,10 +211,9 @@
                                                     <tr>
                                                         <th>NO</th>
                                                         <th>Nama</th>
-                                                        <th>Kebangsaan</th>
-                                                        <th>Alamat</th>
-                                                        <th>Nomor Hp</th>
-                                                        <th>Email</th>
+                                                        <th>No. BST</th>
+                                                        <th>No. Paspor</th>
+                                                        <th>No. Buku Pelaut</th>
                                                         <th>Aksi</th>
                                                         <th>Order</th>
                                                     </tr>
@@ -228,10 +227,9 @@
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $p->nama_lengkap }}</td>
-                                                            <td>{{ $p->kebangsaan }}</td>
-                                                            <td>{{ $p->alamat }}</td>
-                                                            <td>{{ $p->no_hp }}</td>
-                                                            <td>{{ $p->email }}</td>
+                                                            <td>{{ $p->dokumen->no_bst }}</td>
+                                                            <td>{{ $p->dokumen->no_paspor }}</td>
+                                                            <td>{{ $p->dokumen->no_pelaut }}</td>
                                                             <td>
                                                                 {{--  Edit  --}}
                                                                 <div class="btn-group">
