@@ -55,9 +55,6 @@
                                                 </table>
 
                                             </div>
-                                            <div class="panel-footer">
-                                                <button type="submit" class="btn btn-success pull-right">Pulangkan </button>
-                                            </div>
                                     </form>
                                 </div>
                             </diV>
